@@ -1,0 +1,53 @@
+<div class="float-right">
+    <button class="btn btn-md btn-outline-primary" (click)="open(content)">Create new event</button>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">New event</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form #eventForm="ngForm" (ngSubmit)="modal.close('Create event');">
+    <div class="modal-body">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <div class="input-group">
+                    <input required id="name" [(ngModel)]="event.name" name="name" class="form-control" #nameInput #nameModel="ngModel">
+                </div>
+                <div class="alert alert-danger" *ngIf="nameModel.invalid && nameModel.touched">
+                    Name is required
+                </div>
+                
+                <label for="startDate">Start date</label>
+                <div class="input-group">
+                    <input required id="startDate" class="form-control" [(ngModel)]="event.startDate" name="startDate"
+                    placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" #startDateModel="ngModel" (ngModelChange)="fillEndDate()">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">Start
+                            date</button>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="startDateModel.invalid && startDateModel.touched">
+                        Start date is required
+                    </div>
+                    
+                    <label for="endDate">End date</label>
+                    <div class="input-group">
+                        <input required id="endDate" class="form-control" [(ngModel)]="event.endDate" name="endDate"
+                        placeholder="yyyy-mm-dd" name="dp1" ngbDatepicker #dp1="ngbDatepicker" #endDateModel="ngModel">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" (click)="dp1.toggle()" type="button">End date</button>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="endDateModel.invalid && endDateModel.touched">
+                        End date is required
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-dark" [disabled]="!eventForm.form.valid">Create event</button>
+            </div>
+        </form>
+</ng-template>

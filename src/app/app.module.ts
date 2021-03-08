@@ -1,16 +1,28 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
+import { ShoppingModule } from './shopping/shopping.module';
+import { NotFoundComponent } from './core/not-found/not-found.component';
+
+const routes: Routes = [
+  {path: '', redirectTo:'home', pathMatch: 'full'},
+  {path: '**', component: NotFoundComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    CoreModule,
+    RouterModule.forRoot(routes),
+    AdminModule,
+    UserModule,
+    ShoppingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
