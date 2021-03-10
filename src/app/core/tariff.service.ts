@@ -10,7 +10,7 @@ export class TariffService {
   constructor(private httpClient: HttpClient) { }
 
   createTariff(tariff: Tariff){
-    return this.httpClient.post<Tariff>('http://localhost:8080/tariffs', tariff);
+    return this.httpClient.post<Tariff>('http://localhost:8080/tariffs/', tariff);
   }
 
   getTariff(id: number){

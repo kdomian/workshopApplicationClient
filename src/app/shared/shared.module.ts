@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -17,7 +17,8 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     ToastrModule.forRoot(),
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   exports:[
     CommonModule,
@@ -25,7 +26,8 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     ToastrModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

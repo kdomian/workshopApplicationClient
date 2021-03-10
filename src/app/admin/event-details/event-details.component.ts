@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from 'src/app/core/event.service';
-import { MessageService } from 'src/app/core/message.service';
 import { Event } from '../../core/model'
 import {Location} from '@angular/common';
 
@@ -16,7 +15,6 @@ export class EventDetailsComponent implements OnInit {
 
   constructor( private activatedRoute: ActivatedRoute,
     private eventService: EventService, 
-    private messageService: MessageService,
     private _location: Location) { }
 
   ngOnInit(): void {
@@ -27,7 +25,6 @@ export class EventDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       const id = parseInt(params['id']);
        this.eventService.getEvent(id).subscribe(response=>{
-         console.log(response);
          this.event = response;
        })
     })

@@ -9,31 +9,24 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <form #tariffForm="ngForm" (ngSubmit)="modal.close('Create tariff');">
+    <form [formGroup]="tariffFormModel" (ngSubmit)="modal.close('Create tariff');">
         <div class="modal-body">
             <div class="form-group">
                 <label for="price">Price</label>
                 <div class="input-group">
-                    <input required id="price" [(ngModel)]="tariff.price" name="price" class="form-control" #priceInput
-                        #priceModel="ngModel">
-                </div>
-                <div class="alert alert-danger" *ngIf="priceModel.invalid && priceModel.touched">
-                    Price is required
+                    <input id="price" formControlName="price" name="price" class="form-control" #priceInput >
                 </div>
 
-                <label for="ticketType">Ticket type</label>
-                <select class="form-control" id="ticketType">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                <label for="ticket">Ticket type</label>
+                <select class="form-control" id="ticket" formControlName="ticketTypeId">
+                  <option *ngFor="let ticket of ticketsOptionList" [value]="ticket.id" >
+                      {{ticket.name}}
+                  </option>
                 </select>
-
             </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-dark" [disabled]="!tariffForm.form.valid">Create tariff</button>
+            <button type="submit" class="btn btn-outline-dark">Create tariff</button>
         </div>
     </form>
 </ng-template>
